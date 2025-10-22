@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f7f2;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #8bc34a;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        .header {
+            background-color: #8bc34a;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4f4f4f;
+        }
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #c9c9c9;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .predict-btn {
+            background-color: #2196f3;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .predict-btn:hover {
+            background-color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Income Predictor</h2>
+        </div>
+        <form>
+            <div class="form-group">
+                <label>Occupation</label>
+                <select>
+                    <option value="Tech-support" selected>Tech-support</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Relationship</label>
+                <select>
+                    <option value="Wife" selected>Wife</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Race</label>
+                <select>
+                    <option value="White" selected>White</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Sex</label>
+                <select>
+                    <option value="Female" selected>Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Capital Gain</label>
+                <input type="number">
+            </div>
+            <div class="form-group">
+                <label>Capital Loss</label>
+                <input type="number">
+            </div>
+            <div class="form-group">
+                <label>Hours per Week</label>
+                <input type="number">
+            </div>
+            <div class="form-group">
+                <label>Native Country</label>
+                <select>
+                    <option value="United-States" selected>United-States</option>
+                </select>
+            </div>
+            <button class="predict-btn">Predict Income</button>
+        </form>
+    </div>
+</body>
+</html>
