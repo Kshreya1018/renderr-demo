@@ -1,55 +1,45 @@
 from flask import Flask, request, jsonify, render_template
 import pickle
 import numpy as np
+import os 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_dir, 'best_model.pkl')
 
-# --------------------------
-# 1️⃣ Load the trained model
-# --------------------------
-model_path = 'best_model.pkl'  # Replace with your model filename
-with open(model_path, 'rb') as file:
-    model = pickle.load(file)
+try:
+    with open(model_path, 'rb') as file:
+        model = pickle.load(file)
+    print(f"Model loaded successfully from: {model_path}")
+except FileNotFoundError:
+    raise FileNotFoundError(
+        f"The model file was not found at {model_path}. "
+        "Please ensure 'best_model.pkl' is in the same directory as this script."
+    )
+except Exception as e:
+    raise Exception(f"An error occurred while loading the model: {e}")
 
-# --------------------------
-# 2️⃣ Initialize Flask app
-# --------------------------
 app = Flask(__name__)
 
-# --------------------------
-# 3️⃣ Define Home Route
-# --------------------------
 @app.route('/')
 def home():
-    # Renders your HTML frontend (optional)
     return render_template('index.html')
 
-# --------------------------
-# 4️⃣ Define Prediction Route
-# --------------------------
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Get data from form (HTML) or API request (Flutter/Postman)
-        data = request.form.get('features')  # for form data
-        # OR for JSON data from mobile app:
-        # data = request.get_json()['features']
-
-        # Convert input to array
-        # Example: input "1,2,3,4" → [1.0, 2.0, 3.0, 4.0]
+        data = request.form.get('features') 
+    
         features = np.array([float(x) for x in data.split(',')]).reshape(1, -1)
 
-        # Predict using the ML model
         prediction = model.predict(features)
 
-        # Convert output to readable form
         output = prediction[0]
 
         return jsonify({'prediction': str(output)})
 
     except Exception as e:
-        return jsonify({'error': str(e)})
+        return jsonify({'error': str(e)}), 400
 
-# --------------------------
-# 5️⃣ Run the Flask server
-# --------------------------
-if __name__ == '_main_':
+if __name__ == '__main__':
+   
     app.run(debug=True)
