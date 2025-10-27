@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import os 
 base_dir = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(base_dir, 'best_model.pkl')
+model_path = os.path.join(base_dir, 'best_model (1).pkl')
 
 try:
     with open(model_path, 'rb') as file:
